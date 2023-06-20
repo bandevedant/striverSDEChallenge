@@ -26,6 +26,20 @@ void solve(TreeNode *root,vector<int>&ans){
     }
 
 }
+void solveIterative(TreeNode *root,vector<int>&ans){
+     if(root==NULL)
+    return;
+    stack<TreeNode*>st;
+    st.push(root);
+    while( !st.empty()){
+         TreeNode* curr=st.top();
+        ans.push_back(curr->data);
+        st.pop();
+    
+        if(curr->right!=NULL) st.push(curr->right);
+        if(curr->left!=NULL) st.push(curr->left);
+    }
+}
 vector<int> getPreOrderTraversal(TreeNode *root)
 {
     // Write your code here.

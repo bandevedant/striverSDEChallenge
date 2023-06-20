@@ -15,23 +15,38 @@ using namespace std;
         TreeNode(int x, TreeNode *left, TreeNode *right) : data(x), left(left), right(right) {}
     };
 */
-void solve(TreeNode *root,vector<int>&ans){
+void solveRecursive(TreeNode *root,vector<int>&ans){
 
-    // if(root==NULL)
-    // return;
 
     if(root!=NULL){
-        solve(root->left,ans);
+        solveRecursive(root->left,ans);
         ans.push_back(root->data);
-        solve(root->right,ans);
+       solveRecursive(root->right,ans);
     }
 
+}
+void solveIterative(TreeNode *root,vector<int>&ans){
+   stack<TreeNode*>st;
+   TreeNode* curr=root;
+   
+   while(curr!=NULL || !st.empty()){
+       while(curr!=NULL){
+           st.push(curr);
+           curr=curr->left;
+       }
+       curr=st.top();
+       st.pop();
+       ans.push_back(curr->data);
+       curr=curr->right;
+       
+   }
 }
 vector<int> getInOrderTraversal(TreeNode *root)
 {
     // Write your code here.
     vector<int>ans;
-    solve(root,ans);
+    //  solveRecursive(root,ans);
+     solveIterative(root,ans);
     return ans;
 
 
