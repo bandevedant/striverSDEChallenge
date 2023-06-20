@@ -46,25 +46,36 @@ Node *getListAfterReverseOperation(Node *head, int n, int b[]){
 	Node*curr;
 	Node*fast;
 	for(int i=0;i<n;i++){
+		if(len==0)
+		break;
 		 if(b[i]<=len){
+			 curr=slow->next;
+				fast=curr->next;
          if(b[i]==0)
 		 continue;
-
-			while(len>=b[i]){
-				curr=slow->next;
-				fast=curr->next;
-				int t=b[i]-1;
-				while(t--){
-					curr->next=fast->next;
+			 for(int j=0;j<b[i]-1;j++){
+				curr->next=fast->next;
 					fast->next=slow->next;
 					slow->next=fast;
-					fast=fast->next;
-				}
-				slow=curr;
+					fast=curr->next;
+			 }
+			 	slow=curr;
 			len-=b[i];
-			}
+			// while(len>=b[i]){
+			// 	curr=slow->next;
+			// 	fast=curr->next;
+			// 	int t=b[i]-1;
+			// 	while(t--){
+			// 		curr->next=fast->next;
+			// 		fast->next=slow->next;
+			// 		slow->next=fast;
+			// 		fast=curr->next;
+			// 	}
+			// 	slow=curr;
+			// len-=b[i];
+			// }
 		 }
-		else{
+		else if(len<=b[i]){
 			slow->next=reverse(slow->next);
 			len=0;
 		}
