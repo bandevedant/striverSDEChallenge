@@ -21,7 +21,7 @@ vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
         }
     }
     return ans;
-}
+} 
 int main(){
   
  srand(time(NULL));

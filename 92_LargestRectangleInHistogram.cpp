@@ -48,7 +48,7 @@ while(!st.empty()){
    res=max(curr,res);
 }
 return res;
- }
+}
 int main(){
   
  srand(time(NULL));
