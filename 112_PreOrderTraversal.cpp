@@ -43,7 +43,7 @@ void solveIterative(TreeNode *root,vector<int>&ans){
 vector<int> getPreOrderTraversal(TreeNode *root)
 {
     // Write your code here.
-     vector<int>ans;
+    vector<int>ans;
     solve(root,ans);
     return ans;
 }
