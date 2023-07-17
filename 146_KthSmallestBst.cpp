@@ -9,35 +9,33 @@ using namespace std;
     template <typename T>
     class TreeNode {
        public:
-        T val;
+        T data;
         TreeNode<T> *left;
         TreeNode<T> *right;
-        
-        TreeNode(T val) {
-            this->val = val;
+
+        TreeNode(T data) {
+            this->data = data;
             left = NULL;
             right = NULL;
         }
     };
 
 ************************************************************/
-TreeNode<int>*solve(vector<int> &arr, int start,int end){
-    //O(logn)
-    if(start>end)
-    return NULL;
+void solve(TreeNode<int>* root,vector<int>&ino){
+    if(root==NULL)
+    return;
 
-    int mid=start+(end-start)/2;
-    TreeNode<int>*root=new TreeNode<int>(arr[mid]);
-    
-    root->left=solve(arr,start,mid-1);
-    root->right=solve(arr,mid+1,end);
-
-    return root;
+    solve(root->left,ino);
+    ino.push_back(root->data);
+    solve(root->right,ino);
 }
-TreeNode<int>* sortedArrToBST(vector<int> &arr, int n)
+int kthSmallest(TreeNode<int> *root, int k)
 {
-    // Write your code here.
-   return solve(arr,0,n-1);
+	//	Write the code here.
+    vector<int>ino;
+    solve(root,ino);
+    return ino[k-1];
+    
 }
 int main(){
   
